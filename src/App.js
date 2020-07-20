@@ -46,7 +46,10 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Rick and Morty!</h1>
-        <Favorite characters={favoriteCharacters} clickHandler={this.removedFavorite} />
+        <Favorite 
+          characters={favoriteCharacters} 
+          clickHandler={this.removedFavorite} 
+        />
         <Characters 
           characters={characters} 
           clickHandler={this.getCharacter} 
