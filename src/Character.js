@@ -1,10 +1,9 @@
 import React from 'react'
 
-function CharacterCard({ character, getCharacter }) {
+function CharacterCard({ character, clickHandler }) {
 
   const handleClick = () => {
-    getCharacter(character)
-    console.log('handleClick')
+    clickHandler(character)
   }
 
   return (

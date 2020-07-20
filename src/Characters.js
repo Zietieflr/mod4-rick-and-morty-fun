@@ -1,7 +1,7 @@
 import React from 'react'
 import CharacterCard from './Character'
 
-function Characters({ characters, getCharacter }) {
+function Characters({ characters, clickHandler }) {
 
   const displayCharacters = () => {
     return characters.map(character => {
@@ -9,8 +9,9 @@ function Characters({ characters, getCharacter }) {
       <CharacterCard 
         key={character.id} 
         character={character} 
-        getCharacter={getCharacter} 
-      />)
+        clickHandler={clickHandler} 
+      />
+    )
   })}
 
   return (

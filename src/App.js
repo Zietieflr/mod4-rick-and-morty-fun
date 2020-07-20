@@ -9,7 +9,7 @@ class App extends Component {
   
   state = {
     characters: [],
-    favoriteCharacter: {}
+    favoriteCharacters: []
   }
 
   componentDidMount() {
@@ -18,20 +18,38 @@ class App extends Component {
       .then(({ results }) => this.setState({characters: results}))
   }
 
-  getCharacter = (character) => {
-    this.setState({favoriteCharacter: character})
+  getCharacter = (newFave) => {
+    const isNotNewFavorite = this.state.favoriteCharacters.find(character => {
+      return character.id === newFave.id
+    })
+    return isNotNewFavorite ? null : this.setFavoritesState(newFave)
+  }
+
+  setFavoritesState = (character) => {
+    this.setState({
+      favoriteCharacters: [
+        ...this.state.favoriteCharacters, 
+        character
+    ]}) 
+  }
+
+  removedFavorite = (unfaveCharacter) => {
+    const newFaves = this.state.favoriteCharacters.filter(character => {
+      return character.id !== unfaveCharacter.id
+    })
+    this.setState({favoriteCharacters: newFaves})
   }
   
   render() {
-    const { characters, favoriteCharacter } = this.state
+    const { characters, favoriteCharacters } = this.state
 
     return (
       <div className="App">
         <h1>Rick and Morty!</h1>
-        <Favorite character={favoriteCharacter} getCharacter={this.getCharacter} />
+        <Favorite characters={favoriteCharacters} clickHandler={this.removedFavorite} />
         <Characters 
           characters={characters} 
-          getCharacter={this.getCharacter} 
+          clickHandler={this.getCharacter} 
         /> 
       </div>
     );
