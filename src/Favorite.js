@@ -21,7 +21,7 @@ function Favorite({ characters, clickHandler }) {
   return (
     <div className='favorite-character'>
       <h2>Favorites</h2>
-      {characters ? favorites(characters, clickHandler) : null}
+      {characters.length ? favorites(characters, clickHandler) : null}
     </div>
   )
 }
